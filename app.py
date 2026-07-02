@@ -11,6 +11,13 @@ import os
 
 load_dotenv()
 
+# Read API key from Streamlit secrets or .env
+def get_groq_key():
+    try:
+        return st.secrets["GROQ_API_KEY"]
+    except:
+        return os.getenv("GROQ_API_KEY")
+
 @st.cache_resource
 def load_chain():
     embeddings = HuggingFaceEmbeddings(
@@ -26,7 +33,7 @@ def load_chain():
     llm = ChatGroq(
         model_name="llama-3.3-70b-versatile",
         temperature=0.2,
-        groq_api_key=os.getenv("GROQ_API_KEY")
+        groq_api_key=get_groq_key()
     )
 
     prompt = PromptTemplate.from_template("""You are a helpful assistant. 
