@@ -1,4 +1,4 @@
-# RAG Chatbot — Document Q&A with Hallucination Detection
+# RAG Chatbot: Document Q&A with Hallucination Detection
 
 A production-style Retrieval-Augmented Generation (RAG) pipeline that answers questions over custom documents using LLMs, with automatic faithfulness evaluation using BERTScore.
 
@@ -39,19 +39,19 @@ Add your Groq API key to .env:
 
 ## Run
 
-Step 1 - Ingest your documents:
-
-    python ingest.py
-
-Step 2 - Launch the app:
+A sample PDF (`documents/attention.pdf`) and a prebuilt index for it (`faiss_index/`) are included, so you can launch the app right away:
 
     python -m streamlit run app.py
 
+To use your own document, put the PDF in `documents/`, update the filename in `ingest.py`, and rebuild the index:
+
+    python ingest.py
+
 ## Key design decisions
-- Chunk size 500, overlap 50 — balances context preservation with retrieval precision
-- top-k=3 retrieval — enough context without exceeding prompt limits
+- Chunk size 500, overlap 50: balances context preservation with retrieval precision
+- top-k=3 retrieval: enough context without exceeding prompt limits
 - BERTScore F1 above 0.85 = high faithfulness, 0.75-0.85 = moderate, below 0.75 = low
-- Prompt guardrail — LLM explicitly instructed to refuse out-of-scope questions
+- Prompt guardrail: the LLM is explicitly instructed to refuse out-of-scope questions
 
 ## Skills demonstrated
 RAG pipelines, LangChain LCEL, Vector databases, LLM evaluation, Hallucination detection, Responsible AI, HuggingFace, Streamlit deployment
