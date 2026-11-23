@@ -1,5 +1,7 @@
 # RAG Chatbot: Document Q&A with Hallucination Detection
 
+**Live demo:** https://rag-chatbot3.streamlit.app/
+
 A production-style Retrieval-Augmented Generation (RAG) pipeline that answers questions over custom documents using LLMs, with automatic faithfulness evaluation using BERTScore.
 
 ## What it does
